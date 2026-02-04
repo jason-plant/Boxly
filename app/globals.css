@@ -1,0 +1,230 @@
+/* Responsive layout improvements */
+@media (max-width: 600px) {
+  main {
+    padding: 8px !important;
+  }
+  section {
+    padding: 8px !important;
+    border-radius: 8px !important;
+  }
+  .settings-grid,
+  .settings-color-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+  .settings-icon-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  main {
+    padding: 12px !important;
+  }
+  section {
+    padding: 10px !important;
+    border-radius: 10px !important;
+  }
+  .settings-grid,
+  .settings-color-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 14px !important;
+  }
+  .settings-icon-grid {
+    grid-template-columns: 1fr 1fr 1fr !important;
+    gap: 10px !important;
+  }
+}
+
+@media (min-width: 901px) {
+  .settings-grid,
+  .settings-color-grid {
+    grid-template-columns: 1fr 1fr 1fr !important;
+    gap: 16px !important;
+  }
+  .settings-icon-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr !important;
+    gap: 12px !important;
+  }
+}
+@import "tailwindcss";
+
+:root {
+  /* Brand colors (from logo) */
+  --brand-teal: #093649;
+  --brand-pink: #f86483;
+
+  /* Light theme */
+  --bg: #f1f7f9;
+  --surface: #093649;
+  --border: #d3e4ea;
+  --text: #0c1f2a;
+  --muted: #3c6474;
+  --accent: var(--brand-pink);
+  --accent-2: var(--brand-teal);
+
+  /* backwards compat */
+  --background: var(--bg);
+  --foreground: var(--text);
+}
+
+/* dark theme overrides (applies when [data-theme="dark"] is set on <html>) */
+:root[data-theme="dark"] {
+  --bg: #061b24;
+  --surface: #0b2430;
+  --border: #123241;
+  --text: #e7f1f5;
+  --muted: #a8c1cc;
+  --accent: var(--brand-pink);
+  --accent-2: #0f4a63;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* App watermark background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("/source/logo-master.png") center/contain no-repeat;
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#app-shell {
+  position: relative;
+  z-index: 1;
+}
+
+/* Make core components use variables */
+.tap-btn,
+.nav-btn {
+  appearance: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--text);
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 1px 10px rgba(0,0,0,0.06);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tap-btn.primary,
+.nav-btn.primary {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+/* Menu / drawer backgrounds */
+.menu-drawer {
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  color: var(--text);
+}
+/* ===== App-style buttons & links ===== */
+
+.tap-btn,
+.nav-btn {
+  appearance: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--text);
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 1px 10px rgba(0,0,0,0.06);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tap-btn:active,
+.nav-btn:active {
+  transform: scale(0.96);
+  box-shadow: 0 0 0 rgba(0,0,0,0.1);
+}
+
+.tap-btn.primary,
+.nav-btn.primary {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.tap-btn.danger {
+  border-color: #ef4444;
+  color: #ef4444;
+  background: #fff;
+}
+
+.tap-btn.full {
+  width: 100%;
+}
+/* ===== Active / selected nav button ===== */
+
+.nav-btn.active {
+  background: var(--accent-2);
+  color: #fff;
+  border-color: var(--accent-2);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+}
+
+.nav-btn.active:active {
+  transform: scale(0.96);
+}
+
+/* Visually-hidden utility for accessibility (keeps H1 semantic but hides visually) */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Header title transition */
+.ht-layer { transition: transform 220ms cubic-bezier(.2,.9,.3,1), opacity 220ms cubic-bezier(.2,.9,.3,1); }
+.ht-layer.entering { transform: translateY(6px); opacity: 0; }
+.ht-layer.exiting { transform: translateY(-6px); opacity: 0; }
+.ht-layer:not(.entering):not(.exiting) { transform: translateY(0); opacity: 1; }
+
+/* Modal animations */
+.modal-backdrop { background: rgba(0,0,0,0); transition: background 220ms ease; }
+.modal-backdrop.show { background: rgba(0,0,0,0.55); }
+.modal-backdrop.exiting { background: rgba(0,0,0,0); }
+
+/* top-right variants */
+.modal-backdrop.top-right { justify-content: flex-end; align-items: flex-start; }
+
+.modal-panel { transform: translateY(12px); opacity: 0; transition: transform 220ms cubic-bezier(.2,.9,.3,1), opacity 220ms cubic-bezier(.2,.9,.3,1); }
+.modal-panel.show { transform: translateY(0); opacity: 1; }
+.modal-panel.exiting { transform: translateY(12px); opacity: 0; }
+
+/* panel slides down slightly when anchored top-right */
+.modal-panel.top-right { transform: translateY(-8px); }
+.modal-panel.top-right.show { transform: translateY(0); opacity: 1; }
+.modal-panel.top-right.exiting { transform: translateY(-8px); opacity: 0; }
