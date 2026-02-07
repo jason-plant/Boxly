@@ -8,7 +8,7 @@
  * imported at runtime inside `compressImage` so it's only loaded in the browser.
  */
 
-export const DEFAULT_MAX_UPLOAD_MB = 0.5;
+export const DEFAULT_MAX_UPLOAD_MB = 1;
 export const DEFAULT_MAX_UPLOAD_BYTES = Math.round(DEFAULT_MAX_UPLOAD_MB * 1024 * 1024);
 
 export async function supportsWebP() {
